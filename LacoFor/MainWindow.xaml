@@ -10,7 +10,8 @@
         <StackPanel Width="580" VerticalAlignment="Center">
             <StackPanel Background="Black" Margin="0,0,0,24">
                 <TextBlock Text="Seu saldo" Foreground="CornflowerBlue" FontWeight="Bold" FontSize="12" />
-                <TextBlock Text="R$ 0,00" Foreground="Aquamarine" FontWeight="Bold" FontSize="30" Margin="16,0,16,16" />
+                <TextBlock Text="R$ 0,00" Foreground="Aquamarine" FontWeight="Bold" FontSize="30" Margin="16,0,16,16"
+                           x:Name="tbSaldo" />
             </StackPanel>
 
             <StackPanel Background="Black">
@@ -23,7 +24,8 @@
                     <TextBlock Text="Custo Total:" Foreground="CornflowerBlue" FontWeight="Bold" FontSize="20" />
                     <TextBlock Text="R$ 10,00" Foreground="CornflowerBlue" FontSize="20" />
                 </StackPanel>
-                <Button Content="Confirmar sorteio" FontSize="20" Width="480" Height="56" Background="#F59E0B" FontWeight="Bold" Margin="0,0,8,16" Click="BotaoSorteio_OnClick" />
+                <Button Content="Confirmar sorteio" FontSize="20" Width="480" Height="56" Background="#F59E0B"
+                        FontWeight="Bold" Margin="0,0,8,16" Click="BotaoSorteio_OnClick" x:Name="btnSorteio" />
             </StackPanel> 
         </StackPanel>
     </Grid>

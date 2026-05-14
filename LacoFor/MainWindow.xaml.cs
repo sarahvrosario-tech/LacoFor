@@ -16,13 +16,18 @@ namespace LacoFor;
 /// </summary>
 public partial class MainWindow : Window
 {
+    public decimal saldoInicial = 1600.00M;
+    
     public MainWindow()
     {
         InitializeComponent();
     }
 
     private async void BotaoSorteio_OnClick(object sender, RoutedEventArgs e)
+
     {
+        btnSorteio.IsEnabled = false;
+        
         var quantidadeTexto = tbQuantidade.Text;
         var quantidadeSorteio = Convert.ToInt32(quantidadeTexto);
 
@@ -35,9 +40,23 @@ public partial class MainWindow : Window
         for (int contador = 0; contador < quantidadeSorteio; contador++)
         {
 
-            tbResultado.Text = sorteador.Next(0, 40000000).ToString();
-            await Task.Delay(1000);
+            if (saldoInicial >= 10)
+            {
+                tbResultado.Text = sorteador.Next(0, 40000000).ToString();
+                saldoInicial -= 10M;
+                tbSaldo.Text = "R$" +saldoInicial.ToString();
+                await Task.Delay(1000);
+            }
+            else
+            {
+                MessageBox.Show("Você não tem saldo suficiente para realizar o sorteio!");
+                break;
+            }
+            
+          
 
         }
-}
+
+        btnSorteio.IsEnabled = true;
+    }
 }
