@@ -26,10 +26,24 @@ public partial class MainWindow : Window
     private async void BotaoSorteio_OnClick(object sender, RoutedEventArgs e)
 
     {
-        btnSorteio.IsEnabled = false;
+        
         
         var quantidadeTexto = tbQuantidade.Text;
-        var quantidadeSorteio = Convert.ToInt32(quantidadeTexto);
+        int quantidadeSorteio;
+        try
+        {
+            quantidadeSorteio = Convert.ToInt32(quantidadeTexto);
+        }
+        catch (FormatException)
+        {
+            MessageBox.Show(" Entrada invalida. Coloque apenas números de 1 para cima");
+            return;
+        }
+        catch (OverflowException)
+        {
+            MessageBox.Show("Erro! O numero digitado é maoir que o numero suportado");
+            return;
+        }
 
         if (quantidadeSorteio < 1)
         {
@@ -53,7 +67,7 @@ public partial class MainWindow : Window
                 break;
             }
             
-          
+            btnSorteio.IsEnabled = false;
 
         }
 
