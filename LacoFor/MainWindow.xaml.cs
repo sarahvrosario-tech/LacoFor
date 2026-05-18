@@ -16,7 +16,8 @@ namespace LacoFor;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public decimal saldoInicial = 1600.00M;
+    public decimal saldoInicial = 12340.00M;
+    private string[] emoticons = { "🐯" ,"🍊" ,"💎" ,"💰", "🍒", "🔔" };
     
     public MainWindow()
     {
@@ -26,39 +27,54 @@ public partial class MainWindow : Window
     private async void BotaoSorteio_OnClick(object sender, RoutedEventArgs e)
 
     {
-        
-        
-        var quantidadeTexto = tbQuantidade.Text;
-        int quantidadeSorteio;
-        try
+        if (!int.TryParse(tbQuantidade.Text, out var quantidadeSorteios))
         {
-            quantidadeSorteio = Convert.ToInt32(quantidadeTexto);
-        }
-        catch (FormatException)
-        {
-            MessageBox.Show(" Entrada invalida. Coloque apenas números de 1 para cima");
+            MessageBox.Show(("Coloque apenas valores numericos"));
             return;
         }
-        catch (OverflowException)
-        {
-            MessageBox.Show("Erro! O numero digitado é maoir que o numero suportado");
-            return;
-        }
+        
+     
 
-        if (quantidadeSorteio < 1)
+        if (quantidadeSorteios < 1)
         {
-            quantidadeSorteio = 1;
+            quantidadeSorteios = 1;
             
         }
         var sorteador = new Random();
-        for (int contador = 0; contador < quantidadeSorteio; contador++)
+        for (int contador = 0; contador < quantidadeSorteios; contador++)
         {
 
             if (saldoInicial >= 10)
             {
-                tbResultado.Text = sorteador.Next(0, 40000000).ToString();
+                
                 saldoInicial -= 10M;
                 tbSaldo.Text = "R$" +saldoInicial.ToString();
+
+                var numeroSorteado = sorteador.Next(40000001);
+
+                if (numeroSorteado == 3)
+                {
+                    tbSlot1.Text = emoticons[0];
+                    tbSlot2.Text = emoticons[0];
+                    tbSlot3.Text = emoticons[0];
+                    saldoInicial += 20M;
+                    tbSaldo.Text = $"R$ {saldoInicial}";
+                }
+                else
+                {
+                    int slot1, slot2, slot3;
+                    do
+                    {
+                         slot1 = sorteador.Next(emoticons.Length);
+                         slot2 = sorteador.Next(emoticons.Length);
+                         slot3 = sorteador.Next(emoticons.Length);
+                        tbSlot1.Text = emoticons[slot1];
+                        tbSlot2.Text = emoticons[slot2];
+                        tbSlot3.Text = emoticons[slot3];
+                    } while (slot1 == slot2 && slot2 == slot3);
+
+                }
+                
                 await Task.Delay(1000);
             }
             else

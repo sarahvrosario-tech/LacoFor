@@ -15,18 +15,35 @@
             </StackPanel>
 
             <StackPanel Background="Black">
-                <TextBlock x:Name="tbResultado" Text="0" Foreground="CornflowerBlue" FontSize="20" Margin="16,16,16,16" />
-                <StackPanel Orientation="Horizontal" Margin="16,0">
-                    <TextBlock Text="Quantidade de Giros:" Foreground="CornflowerBlue" FontWeight="Bold" FontSize="20" />
-                    <TextBox Text="1" FontSize="20"  x:Name="tbQuantidade"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Border>
+                        <TextBlock  Text="❓" x:Name="tbSlot1" Background="Aqua" FontSize="32"/>
+                    </Border>
+
+                    <Border>
+                        <TextBlock Text="❓" x:Name="tbSlot2" Background="Aqua"  FontSize="32"/>
+                    </Border>
+
+                    <Border>
+                        <TextBlock Text="❓" x:Name="tbSlot3" Background="Aqua" FontSize="32"/>
+                    </Border>
+</StackPanel>
+
+                    <StackPanel>
+
+
+                        <TextBlock Text="Quantidade de Giros:" Foreground="CornflowerBlue" FontWeight="Bold"
+                                   FontSize="20" />
+                        <TextBox Text="1" FontSize="20" x:Name="tbQuantidade" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="16,0">
+                        <TextBlock Text="Custo Total:" Foreground="CornflowerBlue" FontWeight="Bold" FontSize="20" />
+                        <TextBlock Text="R$ 10,00" Foreground="CornflowerBlue" FontSize="20" />
+                    </StackPanel>
+                    <Button Content="Confirmar sorteio" FontSize="20" Width="480" Height="56" Background="#F59E0B"
+                            FontWeight="Bold" Margin="0,0,8,16" Click="BotaoSorteio_OnClick" x:Name="btnSorteio" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="16,0">
-                    <TextBlock Text="Custo Total:" Foreground="CornflowerBlue" FontWeight="Bold" FontSize="20" />
-                    <TextBlock Text="R$ 10,00" Foreground="CornflowerBlue" FontSize="20" />
-                </StackPanel>
-                <Button Content="Confirmar sorteio" FontSize="20" Width="480" Height="56" Background="#F59E0B"
-                        FontWeight="Bold" Margin="0,0,8,16" Click="BotaoSorteio_OnClick" x:Name="btnSorteio" />
-            </StackPanel> 
-        </StackPanel>
+            </StackPanel>
     </Grid>
 </Window>
